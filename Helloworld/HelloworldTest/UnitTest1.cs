@@ -32,6 +32,6 @@ namespace HelloworldTest
             Assert.IsTrue(Program.issorted(gradesDesc, false));
             Assert.IsFalse(Program.issorted(gradesNeg, true));
         }
-        
+
     }
 }
