@@ -1,5 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Helloworld;
+﻿using Helloworld;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using HelloWorld;
 using System;
 
 namespace HelloworldTest
@@ -14,15 +15,10 @@ namespace HelloworldTest
             int[] gradesDesc = new int[] { 9, 5, 2, 1 };
             int[] gradesNeg = new int[] { 9, 5, 15, 1 };
 
-            Assert.IsTrue(issorted(gradesAsc, true));
-            Assert.IsTrue(issorted(gradesDesc, false));
-            Assert.IsFalse(issorted(gradesNeg, true));
+            Assert.IsTrue(Program.issorted(gradesAsc, true));
+            Assert.IsTrue(Program.issorted(gradesDesc, false));
+            Assert.IsFalse(Program.issorted(gradesNeg, true));
 
-        }
-
-        private bool issorted(int[] gradesAsc, bool v)
-        {
-            throw new NotImplementedException();
         }
 
         [TestMethod()]
@@ -36,17 +32,6 @@ namespace HelloworldTest
             Assert.IsTrue(Program.issorted(gradesDesc, false));
             Assert.IsFalse(Program.issorted(gradesNeg, true));
         }
-
-        [TestMethod()]
-        public void issortedTest2()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void issortedTest3()
-        {
-            Assert.Fail();
-        }
+        
     }
 }
