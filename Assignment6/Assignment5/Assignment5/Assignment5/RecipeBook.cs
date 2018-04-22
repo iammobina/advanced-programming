@@ -80,13 +80,24 @@ namespace Assignment5
         public Recipe LookupByTitle(string title)
         {
             // بر عهده دانشجو
-            for (int i=0;i<recipe.Length;i++)
-            {
-                if(recipe[i].Title == title)
-                {
+            for (int i = 0; i < recipe.Length; i++)
+                if (recipe[i].Title == title)
                     return recipe[i];
-                }
-            }
+            Console.WriteLine("not exists");
+            return null;
+        }
+
+        /// <summary>
+        /// پیدا کردن دستور پخت غذا با سبک پخت
+        /// </summary>
+        /// <param name="cuisine">سبک پخت</param>
+        /// <returns>لیست دستور غذاهای سبک پخت داده شده</returns>
+        public Recipe LookupByCuisine(string cuisine)
+        {
+            // بر عهده دانشجو
+            for (int i = 0; i < recipe.Length; i++)
+                if (recipe[i].Cuisine == cuisine)
+                    return recipe[i];
             return null;
         }
 
@@ -100,27 +111,11 @@ namespace Assignment5
             // بر عهده دانشجو
             for (int i = 0; i < recipe.Length; i++)
                 for (int k = 0; k < recipe.Length; k++)
-                if (recipe[i].Keyword[k] == keyword)
-                return recipe[k];
-                
-            return null;
-        }
-
-        /// <summary>
-        /// پیدا کردن دستور پخت غذا با سبک پخت
-        /// </summary>
-        /// <param name="cuisine">سبک پخت</param>
-        /// <returns>لیست دستور غذاهای سبک پخت داده شده</returns>
-        public Recipe LookupByCuisine(string cuisine)
-        {
-            // بر عهده دانشجو
-            for (int i = 0; i < recipe.Length; i++)
-            {
-                if (recipe[i].Cuisine == cuisine)
                 {
-                    return recipe[i];
+                    if (recipe[i].Keyword[k] == keyword)
+                        return recipe[k];
                 }
-            }
+  
             return null;
         }
 
@@ -132,7 +127,7 @@ namespace Assignment5
         {
             using (StreamWriter writer = new StreamWriter(receipeFilePath, false, Encoding.UTF8))
             {
-                foreach (var r in this.recipe)
+                foreach (var r in recipe)
                 {
                     if (r != null)
                     {
@@ -158,7 +153,7 @@ namespace Assignment5
                 {
                     //int recipeCount = int.Parse(reader.ReadLine());
 
-                    for (int i = 0; i < this.recipe.Length; i++)
+                    for (int i = 0; i < recipe.Length; i++)
                     {
                         Recipe r = Recipe.Deserialize(reader);
                         if (null == r)
@@ -166,7 +161,7 @@ namespace Assignment5
                             // Deserialize returns null if it reaches end of file.
                             break;
                         }
-                        this.recipe[i] = r;
+                        recipe[i] = r;
                     }
                 }
                 return true;

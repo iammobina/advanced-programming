@@ -57,7 +57,10 @@ namespace Assignment5
                         Console.WriteLine();
                         switch (cki.Key)
                         {
-                            
+                            case ConsoleKey.T:
+                                Console.WriteLine($"Please enter a title that you want to search:");
+                                Show(fromMom.LookupByTitle(Console.ReadLine()));
+                                break;
                             case ConsoleKey.C:
                                 Console.WriteLine($"Please enter a cuisine that you want to search:");
                                 Show(fromMom.LookupByCuisine(Console.ReadLine()));
@@ -66,10 +69,7 @@ namespace Assignment5
                                 Console.WriteLine($"Please enter a keyword that you want to search");
                                 Show(fromMom.LookupByKeyword(Console.ReadLine()));
                                 break;
-                            case ConsoleKey.T:
-                                Console.WriteLine($"Please enter a title that you want to search:");
-                                Show(fromMom.LookupByTitle(Console.ReadLine()));
-                                break;
+                            
                         }
                         break;
                     case ConsoleKey.L:

@@ -28,10 +28,10 @@ namespace Assignment5
             // بر عهده دانشجو
             this.Title = title;
             this.Instructions = instructions;
-            this.IngredientCount = ingredients.Length;
             this.ServingCount = servingCount;
             this.Cuisine = cuisine;
             this.Keyword = keywords;
+            this.IngredientCount = ingredients.Length;
             this.ingredientlist = ingredients;
         }
 
@@ -49,10 +49,10 @@ namespace Assignment5
             // بر عهده دانشجو
             this.Title = title;
             this.Instructions = instructions;
-            this.IngredientCount = ingredientCount;
             this.ServingCount = servingCount;
             this.Cuisine = cuisine;
             this.Keyword = keywords;
+            this.IngredientCount = ingredientCount;
             this.ingredientlist = new Ingredient[this.IngredientCount];
 
         }
@@ -175,16 +175,14 @@ namespace Assignment5
         {
             // بر عهده دانشجو
             return $"Recipe Name :{Title}" +
-                $"-describtion :{Instructions}  " +
-                $" -ingCount : {IngredientCount}" +
+                $"-instruction :{Instructions}  " +
+                $" -ingCount : {IngredientCount}"+
                 $" -ServingCount : {ServingCount} " +
-                $"-cuisine: {Cuisine} " +
-                $"-keyword{Keyword}";
+                $"-Cuisine: {Cuisine} " +
+                $"-Keyword{Keyword}";
+              
+
             
         }
-    }
-
-    public class testRecipe
-    {
     }
 }
