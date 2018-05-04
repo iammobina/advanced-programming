@@ -116,9 +116,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Assignment6\Assignment5\Assignment5\Assignment5\Assignment5.csproj">
+    <ProjectReference Include="..\..\..\Assignment6-Old\Assignment6\Assignment6\Assignment6.csproj">
       <Project>{5bc45256-4ec7-4860-8b98-cb678ef93818}</Project>
-      <Name>Assignment5</Name>
+      <Name>Assignment6</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
