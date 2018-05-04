@@ -174,9 +174,17 @@ namespace Assignment5
         public override string ToString()
         {
             // بر عهده دانشجو
-            return $"عنوان :{Title} -آموزش :{Instructions}  -تعداد افراد: {ServingCount} -سبک: {Cuisine} -کلمه کلیدی : {Keyword}";
-
+            return $"Recipe Name :{Title}" +
+                $"-describtion :{Instructions}  " +
+                $" -ingCount : {IngredientCount}" +
+                $" -ServingCount : {ServingCount} " +
+                $"-cuisine: {Cuisine} " +
+                $"-keyword{Keyword}";
+            
         }
     }
 
+    public class testRecipe
+    {
+    }
 }

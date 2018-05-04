@@ -91,21 +91,6 @@ namespace Assignment5
         }
 
         /// <summary>
-        /// پیدا کردن دستور پخت غذا با سبک پخت
-        /// </summary>
-        /// <param name="cuisine">سبک پخت</param>
-        /// <returns>لیست دستور غذاهای سبک پخت داده شده</returns>
-        public Recipe LookupByCuisine(string cuisine)
-        {
-            // بر عهده دانشجو
-            for (int i = 0; i < recipe.Length; i++)
-                if (recipe[i].Cuisine == cuisine)
-                    return recipe[i];
-
-            return null;
-        }
-
-        /// <summary>
         /// پیدا کردن دستور پخت غذا با کلمه کلیدی
         /// </summary>
         /// <param name="keyword">کلمه کلیدی</param>
@@ -118,10 +103,26 @@ namespace Assignment5
                 if (recipe[i].Keyword[k] == keyword)
                 return recipe[k];
                 
-          return null;
+            return null;
         }
 
-
+        /// <summary>
+        /// پیدا کردن دستور پخت غذا با سبک پخت
+        /// </summary>
+        /// <param name="cuisine">سبک پخت</param>
+        /// <returns>لیست دستور غذاهای سبک پخت داده شده</returns>
+        public Recipe LookupByCuisine(string cuisine)
+        {
+            // بر عهده دانشجو
+            for (int i = 0; i < recipe.Length; i++)
+            {
+                if (recipe[i].Cuisine == cuisine)
+                {
+                    return recipe[i];
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// ذخیره لیست دستور پخت غذاها در فایل.

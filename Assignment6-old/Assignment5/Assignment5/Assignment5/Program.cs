@@ -8,7 +8,7 @@ namespace Assignment5
 {
     class Program
     {
-        private const string ReceipeFilePath = @"C:\Git\96522321\myFirstProject\Assignment6-Old\Assignment6\recipe.txt";
+        private const string ReceipeFilePath = @"C:\Git\96522321\myFirstProject\Assignment6\Assignment5\Assignment5\recipe.txt";
         FileStream txtfile = new FileStream("recipe.txt",FileMode.Open);
         static void Main(string[] args)
         {
