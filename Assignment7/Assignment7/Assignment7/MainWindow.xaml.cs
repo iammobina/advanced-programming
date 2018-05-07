@@ -50,6 +50,7 @@ namespace Assignment7
                 string loadFileName = openFileDialog.FileName;
                 Load loadfile = new Load(File.ReadAllText(openFileDialog.FileName));
                 loadfile.ShowDialog();
+                this.RecipeBook.Load(loadFileName);
 
             }
             
@@ -57,10 +58,17 @@ namespace Assignment7
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
+            Recipe recipe = RecipeListBox.SelectedItem as Recipe;
             if (RecipeListBox.SelectedItem != null)
+            {
                 RecipeListBox.Items.Remove(RecipeListBox.SelectedItem);
+                RecipeListBox.Items.Remove(recipe);
+            }
             else
+            {
                 MessageBox.Show($" ماده ای برای حذف انتخاب نشده است.");
+            }
+                
         }
 
         private void BtnView_Click(object sender, RoutedEventArgs e)
@@ -85,8 +93,13 @@ namespace Assignment7
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            string saveFileName = null;
             saveFileDialog.ShowDialog();
+            saveFileName = saveFileDialog.FileName;
+            this.RecipeBook.Save(saveFileName);
+                
         }
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -120,6 +133,19 @@ namespace Assignment7
                     RecipeListBox.Items.Remove(recipe);
                     RecipeListBox.Items.Add(recipeForm.NewRecipe);
                 }
+                if (RecipeBook.LookupByCuisine(this.search.Text) == null)
+                {
+                    MessageBox.Show("Not found");
+                }
+                if (RecipeBook.LookupByTitle(this.search.Text) == null)
+                {
+                    MessageBox.Show("Not found");
+                }
+                if (RecipeBook.LookupByKeyword(this.search.Text) == null)
+                {
+                    MessageBox.Show("Not found");
+                }
+
             }           
         }
     }       

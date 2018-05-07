@@ -59,12 +59,6 @@ namespace Assignment7
         public RecipeForm()
         {
             InitializeComponent();
-            for (int i = 0; i < 5; i++)
-            {
-                ListBoxItem item = new ListBoxItem();
-                item.Content = $"مواد اولیه {i}";
-                IngredientsListBox.Items.Add(item);
-            }
         }
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)

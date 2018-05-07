@@ -82,7 +82,11 @@ namespace Assignment5
             // بر عهده دانشجو
             for (int i=0;i<recipe.Length;i++)
             {
-                if(recipe[i].Title == title)
+                    if (recipe[i] == null)
+                    {
+                        continue;
+                    }
+                    if (recipe[i].Title == title)
                 {
                     return recipe[i];
                 }
@@ -99,10 +103,17 @@ namespace Assignment5
         {
             // بر عهده دانشجو
             for (int i = 0; i < recipe.Length; i++)
-                for (int k = 0; k < recipe.Length; k++)
-                if (recipe[i].Keyword[k] == keyword)
-                return recipe[k];
-                
+            {
+                if (recipe[i] == null || recipe[i].Keyword==null)
+                {
+                    continue;
+                }
+                for (int k = 0; k < recipe[i].Keyword.Length; k++)
+                    if (recipe[i].Keyword[k] == keyword)
+                        return recipe[k];
+
+            }
+
             return null;
         }
 
@@ -116,10 +127,15 @@ namespace Assignment5
             // بر عهده دانشجو
             for (int i = 0; i < recipe.Length; i++)
             {
+                if (recipe[i] == null)
+                {
+                    continue;
+                }
                 if (recipe[i].Cuisine == cuisine)
                 {
                     return recipe[i];
                 }
+
             }
             return null;
         }
