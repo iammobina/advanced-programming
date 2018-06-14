@@ -28,11 +28,10 @@ namespace Assignment5
             // بر عهده دانشجو
             this.Title = title;
             this.Instructions = instructions;
+            this.ingredients = ingredients;
             this.ServingCount = servingCount;
             this.Cuisine = cuisine;
             this.Keyword = keywords;
-            this.IngredientCount = ingredients.Count;
-            this.ingredientlist = ingredients;
         }
 
         /// <summary>
@@ -52,10 +51,11 @@ namespace Assignment5
             this.ServingCount = servingCount;
             this.Cuisine = cuisine;
             this.Keyword = keywords;
-            this.IngredientCount = ingredientCount;
-            this.ingredientlist = new List <Ingredient>(IngredientCount);
+            this.ingredients = new List<Ingredient>();
 
         }
+
+        public List<Ingredient> ingredients;
 
         public string Title;
         public string Instructions;
@@ -63,29 +63,9 @@ namespace Assignment5
         public int ServingCount;
         public string Cuisine;
         public List<string> Keyword;
-        public List<Ingredient> ingredientlist;
-        public List<Ingredient> ingredients;
 
 
 
-        /// <summary>
-        /// اضافه کردن ماده اولیه 
-        /// </summary>
-        /// <param name="ingredient">ماده اولیه</param>
-        /// <returns>عمل اضافه کردن موفقیت آمیز انجام شد یا خیر. در صورت تکمیل ظرفیت مقدار برگشتی "خیر" میباشد.</returns>
-        public bool AddIngredient(Ingredient ingredient)
-        {
-            // بر عهده دانشجو
-            for (int i = 0; i < ingredientlist.Count; i++)
-            { 
-                if (ingredientlist[i] == null)
-                {
-                    ingredientlist[i] = ingredient;
-                    return true;
-                }    
-            }
-            return false;
-        }
         /// <summary>
         /// ذخیره اطلاعات دستور پخت غذای این شیء در فایل.
         /// </summary>
@@ -94,33 +74,36 @@ namespace Assignment5
         {
             writer.WriteLine(this.Title);
             writer.WriteLine(this.Instructions);
-            writer.WriteLine(this.IngredientCount);
             writer.WriteLine(this.ServingCount);
-            writer.WriteLine(this.Cuisine);
             for (int i = 0; i < this.Keyword.Count; i++)
-                writer.WriteLine($"{this.Keyword[i]}");
-            for (int i = 0; i < this.ingredientlist.Count; i++)
-                this.ingredientlist[i].Serialize(writer);
+                writer.Write($"{this.Keyword[i]},");
+            writer.WriteLine();
+            writer.WriteLine(this.Cuisine);
+            writer.WriteLine(this.ingredients.Count);
+            for (int i = 0; i < this.ingredients.Count; i++)
+                this.ingredients[i].Serialize(writer);
         }
         /// <summary>
         ///  خواندن اطلاعات دستور پخت غذا از فایل و ایجاد شیء جدید از نوع این کلاس 
         /// </summary>
         /// <param name="reader">شیء مورد استفاده برای خواندن از فایل</param>
         /// <returns>شیء جدید از نوع Recipe</returns>
-        public static Recipe Deserialize(StreamReader reader)
+        public static Recipe Deserialize(StreamReader reader,string title)
         {
             // بر عهده دانشجو
-            string title = reader.ReadLine();
-            if (title == null) return null;
             string instructions = reader.ReadLine();
-            int ingredientCount = int.Parse(reader.ReadLine());
             int servingCount = int.Parse(reader.ReadLine());
+            List<string> keyword = reader.ReadLine().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             string cuisine = reader.ReadLine();
-            List<string> keyword= reader.ReadLine().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            List<Ingredient> inging = new List<Ingredient>();
-            for (int i = 0; i < inging.Count; i++)
-                inging[i] = Ingredient.Deserialize(reader);
-            return new Recipe(title, instructions, inging, servingCount, cuisine, keyword);
+            int ingredientCount = int.Parse(reader.ReadLine());
+            List<Ingredient> ing = new List<Ingredient>();
+            Ingredient _ingredients;
+            for (int i = 0; i < ingredientCount; i++)
+            {
+                _ingredients = Ingredient.Deserialize(reader);
+                ing.Add(_ingredients);
+            }
+            return new Recipe(title, instructions, ing, servingCount, cuisine, keyword);
         }
         /// <summary>
         /// حذف تمام مواد اولیه که با نام ورودی تطبیق میکند
@@ -130,10 +113,10 @@ namespace Assignment5
         public bool RemoveIngredient(string name)
         {
             // بر عهده دانشجو
-            for (int i = 0; i < ingredientlist.Count; i++)
-                if (ingredientlist[i].Name == name)
+            foreach (var ing in this.ingredients)
+                if (ing.Name == name)
                 {
-                    ingredientlist[i] = null;
+                    this.ingredients.Remove(ing);
                     return true;
                 }
             return false;
@@ -147,38 +130,16 @@ namespace Assignment5
         public void UpdateServingCount(int newServingCount)
         {
             // بر عهده دانشجو
-            for (int i = 0; i < ingredientlist.Count; i++)
-            {
-                Ingredients[i].Quantity = (Ingredients[i].Quantity * newServingCount);
-            }
-            ServingCount = newServingCount;
-            
-        }
+            foreach (var ing in this.ingredients)
+                ing.Quantity = (double)(newServingCount * ing.Quantity) / this.ServingCount;
+            this.ServingCount = newServingCount;
 
-        /// <summary>
-        /// فیلد پیشتیبان برای Ingredients.
-        /// </summary>
-         //Ingredient[] _Ingredients;
-
-        /// <summary>
-        /// مواد اولیه
-        /// </summary>
-        public Ingredient[] Ingredients {
-            get
-            {
-                return Ingredients;
-            }
-            private set
-            {
-                // بر عهده دانشجو
-                            
-            }
         }
         
         public override string ToString()
         {
             // بر عهده دانشجو
-            return "Recipe Name :{Title} -instruction :{Instructions}  -ingCount : {IngredientCount} -ServingCount : {ServingCount} -Cuisine: {Cuisine}";
+            return "RecipeName :{Title} -instruction :{Instructions}  -ingCount : {IngredientCount} -ServingCount : {ServingCount} -Cuisine: {Cuisine}";
               
 
             

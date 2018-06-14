@@ -25,7 +25,7 @@ namespace UnitTestProject1
         [TestMethod()]
         public void ToStringTest()
         {
-            Assert.AreEqual(IngrediantTest.ToString(), "Name:{Name} Description:{Description} Quantity:{Quantity} Unit:{Unit}");
+            Assert.AreEqual(IngrediantTest.ToString(), "name:{Name} Description:{Description} Quantity:{Quantity} Unit:{Unit}");
         }
 
 
@@ -33,12 +33,14 @@ namespace UnitTestProject1
         public void DeserializeTest()
         {
             RecipeBookTest.recipe.Add(RecipeTest);
-            RecipeTest.ingredientlist.Add(IngrediantTest);
+            RecipeTest.ingredients.Add(IngrediantTest);
             RecipeBookTest.Save(@"recipe.txt");
             using (System.IO.StreamReader reader = new System.IO.StreamReader(@"recipe.txt"))
             {
-                Assert.IsNotNull(Recipe.Deserialize(reader));
-                Assert.IsNotNull(Ingredient.Deserialize(reader));
+                string title = reader.ReadLine();
+                Recipe r = Recipe.Deserialize(reader, title);
+                Assert.IsNotNull(r);
+                Assert.AreEqual(r.ingredients[0].Name, IngrediantTest.Name);
             }
         }
     }

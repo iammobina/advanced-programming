@@ -60,17 +60,15 @@ namespace Assignment5
         {
 
             // بر عهده دانشجو
-            for (int i = 0; i < recipe.Count; i++)
-            {
-                if (recipe[i].Title == recipeTitle)
+            foreach (var recipe in this.recipe)
+                if (recipe.Title == recipeTitle)
                 {
-                    recipe[i] = null;
+                    this.recipe.Remove(recipe);
                     return true;
                 }
-            }
             return false;
-        
-    }
+
+        }
 
         /// <summary>
         /// پیدا کردن دستور پخت با عنوان
@@ -80,10 +78,12 @@ namespace Assignment5
         public Recipe LookupByTitle(string title)
         {
             // بر عهده دانشجو
-            for (int i = 0; i < recipe.Count; i++)
-                if (recipe[i].Title == title)
-                    return recipe[i];
-            Console.WriteLine("not exists");
+            foreach (var recipe in this.recipe)
+                if (recipe.Title == title)
+                {
+                    return recipe;
+                }
+            //Console.WriteLine("not found");
             return null;
         }
 
@@ -126,12 +126,11 @@ namespace Assignment5
         {
             using (StreamWriter writer = new StreamWriter(receipeFilePath, false, Encoding.UTF8))
             {
+
                 foreach (var r in this.recipe)
                 {
-                    if (r != null)
-                    {
-                        r.Serialize(writer);
-                    }
+                    r.Serialize(writer);
+
                 }
                 return true;
             }
@@ -142,25 +141,18 @@ namespace Assignment5
         /// بارگزاری اطلاعات از فایل ذخیره شده
         /// </summary>
         /// <param name="receipeFilePath">آدرس فایل</param>
-        /// <returns>آیا بارگزاری با موفقیت انجام شد؟</returns>
+        /// <returns>آیا بارگزاری با موفقیت انجام ش؟</returns>
         public bool Load(string receipeFilePath)
         {
             if (!File.Exists(receipeFilePath))
                 return false;
-
             using (StreamReader reader = new StreamReader(receipeFilePath))
             {
-                //int recipeCount = int.Parse(reader.ReadLine());
-
-                for (int i = 0; i < this.recipe.Count; i++)
+                string title;
+                while ((title = reader.ReadLine()) != null)
                 {
-                    Recipe r = Recipe.Deserialize(reader);
-                    if (null == r)
-                    {
-                        // Deserialize returns null if it reaches end of file.
-                        break;
-                    }
-                    this.recipe[i] = r;
+                    Recipe r = Recipe.Deserialize(reader, title);
+                    this.recipe.Add(r);
                 }
             }
             return true;

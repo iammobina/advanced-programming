@@ -27,11 +27,12 @@ namespace UnitTestProject1
         public void SaveTest()
         {
             RecipeBookTest.recipe.Add(RecipeTest);
-            RecipeTest.ingredientlist.Add(IngrediantTest);
+            RecipeTest.ingredients.Add(IngrediantTest);
             RecipeBookTest.Save(@"recipe.txt");
             using (System.IO.StreamReader reader = new System.IO.StreamReader(@"recipe.txt"))
             {
-                Assert.IsNotNull(Recipe.Deserialize(reader));
+                string title = reader.ReadLine();
+                Assert.IsNotNull(Recipe.Deserialize(reader,title));
             }
         }
 
@@ -68,7 +69,7 @@ namespace UnitTestProject1
         public void LoadTest()
         {
             RecipeBookTest.recipe.Add(RecipeTest);
-            RecipeTest.ingredientlist.Add(IngrediantTest);
+            RecipeTest.ingredients.Add(IngrediantTest);
             RecipeBookTest.Save(@"recipe.txt");
             Assert.IsTrue(RecipeBookTest.Load(@"recipe.txt"));
             Assert.IsFalse(RecipeBookTest.Load(@"Null.txt"));
@@ -81,7 +82,7 @@ namespace UnitTestProject1
             RecipeBookTest.recipe.Add(RecipeTest1);
             int capacity = RecipeBookTest.recipe.Count;
             Assert.AreEqual(RecipeBookTest.recipe.Count,capacity);
-            Assert.IsFalse(RecipeBookTest.Remove("kabab"));
+            Assert.IsFalse(RecipeBookTest.Remove("Kabab"));
             Assert.AreEqual(capacity, RecipeBookTest.recipe.Count);
             Assert.IsTrue(RecipeBookTest.Remove("shenisel"));
         }
