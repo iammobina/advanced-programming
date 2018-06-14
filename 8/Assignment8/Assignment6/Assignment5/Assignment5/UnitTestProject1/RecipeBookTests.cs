@@ -82,7 +82,7 @@ namespace UnitTestProject1
             RecipeBookTest.recipe.Add(RecipeTest1);
             int capacity = RecipeBookTest.recipe.Count;
             Assert.AreEqual(RecipeBookTest.recipe.Count,capacity);
-            Assert.IsFalse(RecipeBookTest.Remove("Kabab"));
+            Assert.IsFalse(RecipeBookTest.Remove("kabab"));
             Assert.AreEqual(capacity, RecipeBookTest.recipe.Count);
             Assert.IsTrue(RecipeBookTest.Remove("shenisel"));
         }

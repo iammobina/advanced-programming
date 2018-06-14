@@ -25,7 +25,7 @@ namespace UnitTestProject1
         [TestMethod()]
         public void ToStringTest()
         {
-            Assert.AreEqual(IngrediantTest.ToString(), "name:{Name} Description:{Description} Quantity:{Quantity} Unit:{Unit}");
+            Assert.AreEqual(IngrediantTest.ToString(), "Name:{Name} Description:{Description} Quantity:{Quantity} Unit:{Unit}");
         }
 
 
