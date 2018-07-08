@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F53EBFFA-0F7E-4C74-9640-088A8B2CDCAB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assignment13</RootNamespace>
+    <AssemblyName>Assignment13</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ValueOf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ValueOf.1.0.7\lib\net451\ValueOf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FileNamePolicy\FileNamePolicy.cs" />
+    <Compile Include="FileNamePolicy\ILogFileNamePolicy.cs" />
+    <Compile Include="FileNamePolicy\IncrementalLogFileName.cs" />
+    <Compile Include="FileNamePolicy\TimeBasedLogFileName.cs" />
+    <Compile Include="FileNamePolicy\WeekDayLogFileName.cs" />
+    <Compile Include="Formatters\ConsoleLogFormatter.cs" />
+    <Compile Include="Formatters\CsvFormatter.cs" />
+    <Compile Include="Formatters\ILogFormatter.cs" />
+    <Compile Include="Formatters\XmlLogFormatter.cs" />
+    <Compile Include="Formatters\XsvFormatter.cs" />
+    <Compile Include="LogEntry.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Loggers\ConsoleLogger.cs" />
+    <Compile Include="Loggers\DBLogger.cs" />
+    <Compile Include="Loggers\FileLogger.cs" />
+    <Compile Include="Loggers\ILogger.cs" />
+    <Compile Include="LogWriters\ConcurrentLogWriter.cs" />
+    <Compile Include="LogWriters\GuardedLogWriter.cs" />
+    <Compile Include="LogWriters\LockedLogWriter.cs" />
+    <Compile Include="LogWriters\LockedQueueLogWriter.cs" />
+    <Compile Include="LogWriters\NoLockLogWriter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scrubbers\AbstractScrubber.cs" />
+    <Compile Include="Scrubbers\CCScrubber.cs" />
+    <Compile Include="Scrubbers\EmailScrubber.cs" />
+    <Compile Include="Scrubbers\FullNameScrubber.cs" />
+    <Compile Include="Scrubbers\IDScrubber.cs" />
+    <Compile Include="Scrubbers\IPrivacyScrubber.cs" />
+    <Compile Include="Scrubbers\PhoneNumberScrubber.cs" />
+    <Compile Include="Scrubbers\PrivacyScrubber.cs" />
+    <Compile Include="Scrubbers\PrivacyScrubberFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
