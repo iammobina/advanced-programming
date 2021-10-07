@@ -32,12 +32,17 @@ namespace Assignment5
         public Ingredient()
         {
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a8
         /// <summary>
         /// ذخیره اطلاعات مواد اولیه این شیء در فایل.
         /// </summary>
         /// <param name="writer">شیء مورد استفاده برای نوشتن در فایل</param>
         public void Serialize(StreamWriter writer) =>
             writer.Write($"{this.Name}\n{this.Description}\n{this.Quantity}\n{this.Unit}\n");
+<<<<<<< HEAD
         public void Serialize(StreamWriter writer)
         {
             // بر عهده دانشجو
@@ -46,6 +51,8 @@ namespace Assignment5
             writer.WriteLine(this.Quantity);
             writer.WriteLine(this.Unit);
         }
+=======
+>>>>>>> a8
 
         /// <summary>
         ///  خواندن اطلاعات مواد اولیه از فایل و ایجاد شیء جدید از نوع این کلاس 
@@ -61,11 +68,14 @@ namespace Assignment5
             Ingrediantss.Quantity = double.Parse(reader.ReadLine());
             Ingrediantss.Unit = reader.ReadLine();
             return Ingrediantss;
+<<<<<<< HEAD
             string name = reader.ReadLine();
             string describtion = reader.ReadLine();
             double quantity = double.Parse(reader.ReadLine());
             string unit = reader.ReadLine();
             return new Ingredient(name, describtion, quantity, unit);
+=======
+>>>>>>> a8
         }
         /// <summary>
         /// نام ماده اولیه

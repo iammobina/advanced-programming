@@ -24,8 +24,8 @@ namespace UnitTestProject1
         public void RemoveIngredientTest()
         {
             
-            RecipeTest.ingredientlist.Add(ingredienttest);
-            Assert.IsFalse(RecipeTest.RemoveIngredient("Not Fried"));
+            RecipeTest.ingredients.Add(ingredienttest);
+            Assert.IsFalse(RecipeTest.RemoveIngredient("not Fried"));
             Assert.IsTrue(RecipeTest.RemoveIngredient("Onion"));
         }
 

@@ -62,6 +62,7 @@ namespace Assignment5
             // بر عهده دانشجو
             foreach (var recipe in this.recipe)
                 if (recipe.Title == recipeTitle)
+<<<<<<< HEAD
                 {
                     this.recipe.Remove(recipe);
                     return true;
@@ -72,14 +73,15 @@ namespace Assignment5
             for (int i = 0; i < recipe.Count; i++)
             {
                 if (recipe[i].Title == recipeTitle)
+=======
+>>>>>>> a8
                 {
-                    recipe[i] = null;
+                    this.recipe.Remove(recipe);
                     return true;
                 }
-            }
             return false;
-        
-    }
+
+        }
 
         /// <summary>
         /// پیدا کردن دستور پخت با عنوان
@@ -95,10 +97,13 @@ namespace Assignment5
                     return recipe;
                 }
             //Console.WriteLine("not found");
+<<<<<<< HEAD
             for (int i = 0; i < recipe.Count; i++)
                 if (recipe[i].Title == title)
                     return recipe[i];
             Console.WriteLine("not exists");
+=======
+>>>>>>> a8
             return null;
         }
 
@@ -142,17 +147,18 @@ namespace Assignment5
             using (StreamWriter writer = new StreamWriter(receipeFilePath, false, Encoding.UTF8))
             {
 
+<<<<<<< HEAD
 
                 foreach (var r in this.recipe)
                 {
                     r.Serialize(writer);
 
+=======
+>>>>>>> a8
                 foreach (var r in this.recipe)
                 {
-                    if (r != null)
-                    {
-                        r.Serialize(writer);
-                    }
+                    r.Serialize(writer);
+
                 }
                 return true;
             }
@@ -163,11 +169,12 @@ namespace Assignment5
         /// بارگزاری اطلاعات از فایل ذخیره شده
         /// </summary>
         /// <param name="receipeFilePath">آدرس فایل</param>
-        /// <returns>آیا بارگزاری با موفقیت انجام شد؟</returns>
+        /// <returns>آیا بارگزاری با موفقیت انجام ش؟</returns>
         public bool Load(string receipeFilePath)
         {
             if (!File.Exists(receipeFilePath))
                 return false;
+<<<<<<< HEAD
             using (StreamReader reader = new StreamReader(receipeFilePath))
             {
                 string title;
@@ -176,19 +183,15 @@ namespace Assignment5
                     Recipe r = Recipe.Deserialize(reader, title);
                     this.recipe.Add(r);
 
+=======
+>>>>>>> a8
             using (StreamReader reader = new StreamReader(receipeFilePath))
             {
-                //int recipeCount = int.Parse(reader.ReadLine());
-
-                for (int i = 0; i < this.recipe.Count; i++)
+                string title;
+                while ((title = reader.ReadLine()) != null)
                 {
-                    Recipe r = Recipe.Deserialize(reader);
-                    if (null == r)
-                    {
-                        // Deserialize returns null if it reaches end of file.
-                        break;
-                    }
-                    this.recipe[i] = r;
+                    Recipe r = Recipe.Deserialize(reader, title);
+                    this.recipe.Add(r);
                 }
             }
             return true;

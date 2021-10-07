@@ -27,7 +27,6 @@ namespace Assignment5
                         // بر عهده دانشجو
                         Recipe foods = GetRecipeFromInput();
                         fromMom.Add(foods);
-                        Console.WriteLine("Your recipe added successfully !");
                         break;
                     case ConsoleKey.D:
                         Console.WriteLine("Delete Recipe");
@@ -80,6 +79,7 @@ namespace Assignment5
                         // بر عهده دانشجو
                         foreach (var recipe in fromMom.recipe)
                             Show(recipe);
+<<<<<<< HEAD
                         for (int i = 0; i < fromMom.recipe.Count; i++)
                         {
                             if (fromMom.recipe[i] == null)
@@ -87,6 +87,8 @@ namespace Assignment5
                             else
                                 Show(fromMom.recipe[i]);
                         }
+=======
+>>>>>>> a8
                         break;
                     case ConsoleKey.Escape:
                         Console.WriteLine("Esc");
@@ -133,6 +135,7 @@ namespace Assignment5
             List<string> keywords = Console.ReadLine().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             List<Ingredient> ingredients = new List<Ingredient>();
             Ingredient ingredient1 = new Ingredient();
+<<<<<<< HEAD
             for (int i = 0; i < ingredients.Count; i++)
             {
                 Console.WriteLine("Please name the ingredient:");
@@ -147,21 +150,21 @@ namespace Assignment5
             }
             Recipe foods = new Recipe(title, description, ingredients, servCount, cuisine, keywords);
             List<Ingredient> ingredients = new List<Ingredient> (ingredientCount);
+=======
+>>>>>>> a8
             for (int i = 0; i < ingredients.Count; i++)
             {
                 Console.WriteLine("Please name the ingredient:");
-                string name = Console.ReadLine();
+                ingredient1.Name = Console.ReadLine();
                 Console.WriteLine("Please write about this ingredient:");
-                string ingdescription = Console.ReadLine();
-                Console.WriteLine("Please write about it's quantity:");
-                double quantity = double.Parse(Console.ReadLine());
-                Console.WriteLine("Please write about it's unit:");
-                string unit = Console.ReadLine();
-                ingredients[i] = new Ingredient(name, ingdescription, quantity, unit);
+                ingredient1.Description = Console.ReadLine();
+                Console.WriteLine("Please Write about it's quantity:");
+                ingredient1.Quantity = double.Parse(Console.ReadLine());
+                Console.WriteLine("Please Write about it's unit:");
+                ingredient1.Unit = Console.ReadLine();
+                ingredients.Add(ingredient1);
             }
-            Recipe foods = new Recipe(title, description, ingredientCount, servCount, cuisine, keywords);
-            for (int i = 0; i < ingredients.Count; i++)
-                foods.AddIngredient(ingredients[i]);
+            Recipe foods = new Recipe(title, description, ingredients, servCount, cuisine, keywords);
             return foods;
 
         }
