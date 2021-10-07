@@ -69,6 +69,17 @@ namespace Assignment5
             return false;
 
         }
+            for (int i = 0; i < recipe.Count; i++)
+            {
+                if (recipe[i].Title == recipeTitle)
+                {
+                    recipe[i] = null;
+                    return true;
+                }
+            }
+            return false;
+        
+    }
 
         /// <summary>
         /// پیدا کردن دستور پخت با عنوان
@@ -84,6 +95,10 @@ namespace Assignment5
                     return recipe;
                 }
             //Console.WriteLine("not found");
+            for (int i = 0; i < recipe.Count; i++)
+                if (recipe[i].Title == title)
+                    return recipe[i];
+            Console.WriteLine("not exists");
             return null;
         }
 
@@ -127,10 +142,17 @@ namespace Assignment5
             using (StreamWriter writer = new StreamWriter(receipeFilePath, false, Encoding.UTF8))
             {
 
+
                 foreach (var r in this.recipe)
                 {
                     r.Serialize(writer);
 
+                foreach (var r in this.recipe)
+                {
+                    if (r != null)
+                    {
+                        r.Serialize(writer);
+                    }
                 }
                 return true;
             }
@@ -153,6 +175,20 @@ namespace Assignment5
                 {
                     Recipe r = Recipe.Deserialize(reader, title);
                     this.recipe.Add(r);
+
+            using (StreamReader reader = new StreamReader(receipeFilePath))
+            {
+                //int recipeCount = int.Parse(reader.ReadLine());
+
+                for (int i = 0; i < this.recipe.Count; i++)
+                {
+                    Recipe r = Recipe.Deserialize(reader);
+                    if (null == r)
+                    {
+                        // Deserialize returns null if it reaches end of file.
+                        break;
+                    }
+                    this.recipe[i] = r;
                 }
             }
             return true;

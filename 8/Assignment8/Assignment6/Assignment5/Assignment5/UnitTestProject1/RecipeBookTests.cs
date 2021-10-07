@@ -33,7 +33,6 @@ namespace UnitTestProject1
             {
                 string title = reader.ReadLine();
                 Assert.IsNotNull(Recipe.Deserialize(reader,title));
-            }
         }
 
         [TestMethod()]

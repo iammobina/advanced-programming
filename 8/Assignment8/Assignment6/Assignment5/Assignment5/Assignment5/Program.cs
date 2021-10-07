@@ -27,6 +27,7 @@ namespace Assignment5
                         // بر عهده دانشجو
                         Recipe foods = GetRecipeFromInput();
                         fromMom.Add(foods);
+                        Console.WriteLine("Your recipe added successfully !");
                         break;
                     case ConsoleKey.D:
                         Console.WriteLine("Delete Recipe");
@@ -79,6 +80,13 @@ namespace Assignment5
                         // بر عهده دانشجو
                         foreach (var recipe in fromMom.recipe)
                             Show(recipe);
+                        for (int i = 0; i < fromMom.recipe.Count; i++)
+                        {
+                            if (fromMom.recipe[i] == null)
+                            continue;
+                            else
+                                Show(fromMom.recipe[i]);
+                        }
                         break;
                     case ConsoleKey.Escape:
                         Console.WriteLine("Esc");
@@ -138,6 +146,22 @@ namespace Assignment5
                 ingredients.Add(ingredient1);
             }
             Recipe foods = new Recipe(title, description, ingredients, servCount, cuisine, keywords);
+            List<Ingredient> ingredients = new List<Ingredient> (ingredientCount);
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                Console.WriteLine("Please name the ingredient:");
+                string name = Console.ReadLine();
+                Console.WriteLine("Please write about this ingredient:");
+                string ingdescription = Console.ReadLine();
+                Console.WriteLine("Please write about it's quantity:");
+                double quantity = double.Parse(Console.ReadLine());
+                Console.WriteLine("Please write about it's unit:");
+                string unit = Console.ReadLine();
+                ingredients[i] = new Ingredient(name, ingdescription, quantity, unit);
+            }
+            Recipe foods = new Recipe(title, description, ingredientCount, servCount, cuisine, keywords);
+            for (int i = 0; i < ingredients.Count; i++)
+                foods.AddIngredient(ingredients[i]);
             return foods;
 
         }
